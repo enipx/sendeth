@@ -72,6 +72,7 @@ export const TransactionProvider = (props: TransactionProviderProps) => {
         title: 'Connect wallet!',
         content: `Please connect your wallet first and try again`,
         colorScheme: 'blue',
+        variant: 'filled',
         withIcon: true,
         withCloseButton: true,
       })
@@ -103,6 +104,7 @@ export const TransactionProvider = (props: TransactionProviderProps) => {
           title: 'Transaction complete! 🎉',
           content: `Your transfer of ${amount} ETH to ${truncateWalletHandler(address)} was successful. 🚀`,
           colorScheme: 'green',
+          variant: 'filled',
           withIcon: true,
           withCloseButton: true,
         })
@@ -113,6 +115,7 @@ export const TransactionProvider = (props: TransactionProviderProps) => {
           title: 'Something went wrong!',
           content: `We were unable to process this transfer, Please try again later`,
           colorScheme: 'red',
+          variant: 'filled',
           withIcon: true,
           withCloseButton: true,
         })
