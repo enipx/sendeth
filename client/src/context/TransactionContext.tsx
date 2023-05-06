@@ -71,7 +71,7 @@ export const TransactionProvider = (props: TransactionProviderProps) => {
       toast.show({
         title: 'Connect wallet!',
         content: `Please connect your wallet first and try again`,
-        colorScheme: 'red',
+        colorScheme: 'blue',
         withIcon: true,
         withCloseButton: true,
       })
