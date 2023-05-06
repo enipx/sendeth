@@ -69,32 +69,50 @@ export const TransactionProvider = (props: TransactionProviderProps) => {
 
     if (windowExistsHandler() && address && amount) {
       // send transaction
-      const transactionContract = getEthereumContractHandler()
+      try {
 
-      const parsedAmout = getEthParsedAmount(amount);
+        setLoading(true);
 
-      await sendEthereumHandler({
-        from: currentAccount,
-        to: address,
-        amount,
-      })
+        const transactionContract = getEthereumContractHandler()
+
+        const parsedAmout = getEthParsedAmount(amount);
+
+        await sendEthereumHandler({
+          from: currentAccount,
+          to: address,
+          amount,
+        })
       
-      // store transaction to blockchain
-      const transactionHash = await transactionContract.addToBlockchain(address, parsedAmout, message);
+        // store transaction to blockchain
+        const transactionHash = await transactionContract.addToBlockchain(address, parsedAmout, message);
 
-      setLoading(true);
+        await transactionHash.wait();
 
-      await transactionHash.wait();
+        toast.show({
+          title: 'Transaction complete! 🎉',
+          content: `Your transfer of ${amount} ETH to ${truncateWalletHandler(address)} was successful. 🚀`,
+          colorScheme: 'green',
+          withIcon: true,
+          withCloseButton: true,
+        })
+      } catch (error) {
+        console.log(error);
 
-      setLoading(false);
+        toast.show({
+          title: 'Something went wrong!',
+          content: `We were unable to process this transfer, Please try again later`,
+          colorScheme: 'red',
+          withIcon: true,
+          withCloseButton: true,
+        })
 
-      toast.show({
-        title: 'Transaction complete! 🎉',
-        content: `Your transfer of ${amount} ETH to ${truncateWalletHandler(address)} was successful. 🚀`,
-        colorScheme: 'green',
-        withIcon: true,
-        withCloseButton: true,
-      })
+      } finally {
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000)
+      }
+
+      
     }
   }
 
