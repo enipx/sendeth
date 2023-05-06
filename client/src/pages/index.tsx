@@ -1,9 +1,6 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import { Container, Flex, View } from '@oreo-ui/web'
 import { Header, Footer, RecipientForm } from '@/component'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
@@ -14,7 +11,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container type="sm" className={`${inter.className}`}>
+      <Container type="sm">
         <Flex px="lg" center column height="calc(100vh - 1rem)">
           <Header/>
           <RecipientForm/>

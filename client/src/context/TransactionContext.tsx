@@ -67,6 +67,17 @@ export const TransactionProvider = (props: TransactionProviderProps) => {
   const sendTransaction = async () => {
     const { address, amount, message } = sendDetails;
 
+    if (!currentAccount) {
+      toast.show({
+        title: 'Connect wallet!',
+        content: `Please connect your wallet first and try again`,
+        colorScheme: 'red',
+        withIcon: true,
+        withCloseButton: true,
+      })
+      return;
+    }
+
     if (windowExistsHandler() && address && amount) {
       // send transaction
       try {

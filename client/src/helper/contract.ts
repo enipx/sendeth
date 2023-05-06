@@ -37,7 +37,7 @@ export const isWalletConnectedHandler = async () => {
 
   if (!ethereum) {
     // ...
-    alert('Please install metamask')
+    // alert('Please install metamask')
     return;
   }
 
@@ -51,7 +51,7 @@ export const connectWalletHandler = async () => {
 
   if (!ethereum) {
     // ...
-    alert('Please install metamask')
+    // alert('Please install metamask')
     return;
   }
 
