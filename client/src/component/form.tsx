@@ -40,6 +40,30 @@ const RecipientForm = () => {
     connectWallet?.();
   }
 
+  const renderConnectedAccount = () => {
+    if (currentAccount) {
+      return (
+        <View>
+          <View textAlign="center">
+            <Text mb="sm" fontWeight="500" color={linkColor}>
+              Connected Account:
+            </Text>
+
+            <Tooltip label={currentAccount}>
+              <Text fontSize="sm">
+                { truncateWalletHandler(currentAccount) }
+              </Text>
+            </Tooltip>
+          </View>
+
+          <Divider my="lg" />
+        </View>
+      )
+    }
+
+    return null;
+  }
+
   return (
     <View
       border={`1px solid ${borderColor}`}
@@ -49,23 +73,7 @@ const RecipientForm = () => {
       as="form"
       width="100%"
       onSubmit={onSendHandler}>
-
-      <View>
-        <View textAlign="center">
-          <Text mb="sm" fontWeight="500" color={linkColor}>
-            Connected Account:
-          </Text>
-
-          <Tooltip label={currentAccount}>
-            <Text fontSize="sm">
-              { truncateWalletHandler(currentAccount) }
-            </Text>
-          </Tooltip>
-        </View>
-
-        <Divider my="lg" />
-      </View>
-
+      {renderConnectedAccount()}
 
       <View mb="base">
         <Input
