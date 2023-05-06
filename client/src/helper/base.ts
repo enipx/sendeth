@@ -11,9 +11,9 @@ export const windowExistsHandler = () => {
   return !!windowExists;
 };
 
-export const truncateWalletHandler = (address: string) => {
-  const first = address.substring(0, 6);
-  const last = address.slice(-6);
+export const truncateWalletHandler = (address?: string) => {
+  const first = (address || '').substring(0, 6);
+  const last = (address || '').slice(-6);
 
   return `${first}.....${last}`;
 }
