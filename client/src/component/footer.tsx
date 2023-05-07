@@ -1,10 +1,10 @@
-import { View, Text, Switch, useModeContext, useModeTheme, Flex } from "@oreo-ui/web"
+import { View, Text, Switch, useModeContext, Flex } from "@oreo-ui/web"
 import { ChangeEvent } from "react";
 
 const Footer = () => {
   const mode = useModeContext();
 
-  const { isDark } = useModeTheme();
+  const isDark = mode?.mode === 'dark';
 
   const onChangeHandler = (evt: ChangeEvent<HTMLInputElement>) => {
     evt.preventDefault();
@@ -21,7 +21,7 @@ const Footer = () => {
         <Switch
           checked={isDark}
           onChange={onChangeHandler}
-          key={isDark as any}
+          key={mode?.mode}
         />
 
         <Text mt="md" fontSize="sm" fontWeight="500" textAlign="center">
